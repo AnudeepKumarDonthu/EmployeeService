@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Employee {
 
 	@Id()
-	@Column(name = "id")
+	@Column(name = "employeeid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int employeeId;
 
