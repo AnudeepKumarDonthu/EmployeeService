@@ -5,18 +5,54 @@ package com.employee.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * @author Anudeep Kumar
  *
  */
-
+@Entity
+@EnableTransactionManagement
+@Table(name = "EMPLOYEES")
 public class Employee {
 
+	@Id()
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int employeeId;
+
+	@Column(name = "first_name")
 	private String firstName;
+
+	@Column(name = "last_name")
 	private String lastName;
+
+	@Column(name = "gender")
 	private String gender;
+
+	@Column(name = "dob")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date dob;
+
+	@Column(name = "department")
 	private String department;
+
+	public int getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -60,8 +96,8 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender + ", dob=" + dob
-				+ ", department=" + department + "]";
+		return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", gender=" + gender + ", dob=" + dob + ", department=" + department + "]";
 	}
 
 	@Override
@@ -70,6 +106,7 @@ public class Employee {
 		int result = 1;
 		result = prime * result + ((department == null) ? 0 : department.hashCode());
 		result = prime * result + ((dob == null) ? 0 : dob.hashCode());
+		result = prime * result + employeeId;
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
@@ -94,6 +131,8 @@ public class Employee {
 			if (other.dob != null)
 				return false;
 		} else if (!dob.equals(other.dob))
+			return false;
+		if (employeeId != other.employeeId)
 			return false;
 		if (firstName == null) {
 			if (other.firstName != null)

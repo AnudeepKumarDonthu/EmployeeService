@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  *
  */
 @SpringBootApplication
-@EnableAutoConfiguration
+//@EnableAutoConfiguration
 @ComponentScan(basePackages = {"com.employee"})
 public class EmployeeServiceStart 
 {
